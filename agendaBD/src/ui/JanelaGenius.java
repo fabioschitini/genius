@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,13 +14,18 @@ import negocio.Genius;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JCheckBox;
 
-public class JanelaGenius {
+public class Janela {
 
 	private JFrame frame;
-	private JTextField txtNome;
-	private JTextField txtNumero;
+	private JTextField txtNomeJogador;
     private Genius genius = new Genius();
+    private JTextField textField;
+	/**
+
 	/**
 	 * Launch the application.
 	 */
@@ -27,7 +33,7 @@ public class JanelaGenius {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JanelaGenius window = new JanelaGenius();
+					Janela window = new Janela();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +45,7 @@ public class JanelaGenius {
 	/**
 	 * Create the application.
 	 */
-	public JanelaGenius() {
+	public Janela() {
 		initialize();
 	}
 
@@ -47,96 +53,73 @@ public class JanelaGenius {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
-			try {
-				genius.iniciarBD();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				System.out.println(genius.getCurrentJogId());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-	//	try {
-	//		genius.adicionarJogador(new Jogador("Exemplo"),2);
-	//	} catch (Exception e) {
+		
+		try {
+			genius.iniciarBD();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}
-
+			e.printStackTrace();
+		}
+		try {
+			System.out.println("\nTotal de jogadores:"+genius.getCurrentJogId()+"\n");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("NOME:");
-		lblNewLabel.setBounds(31, 43, 46, 14);
-		frame.getContentPane().add(lblNewLabel);
-			
-		txtNome = new JTextField();
-		txtNome.setBounds(87, 40, 282, 20);
-		frame.getContentPane().add(txtNome);
-		txtNome.setColumns(10);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
+		JPanel panelCadastroJogador = new JPanel();
+		tabbedPane.addTab("Cadastro", null, panelCadastroJogador, null);
+		panelCadastroJogador.setLayout(null);
 		
-		/*	JButton btnNewButton = new JButton("ADD");
+		JLabel lblNewLabel = new JLabel("Nome Pesquisador: ");
+		lblNewLabel.setBounds(21, 36, 116, 14);
+		panelCadastroJogador.add(lblNewLabel);
+		
+		txtNomeJogador = new JTextField();
+		txtNomeJogador.setBounds(154, 33, 161, 20);
+		panelCadastroJogador.add(txtNomeJogador);
+		txtNomeJogador.setColumns(10);
+		
+		JButton btnNewButton = new JButton("ADD");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					genius.addJogador(new Jogador(txtNome.getText()));
-					JOptionPane.showMessageDialog(btnNewButton, "Contato cadasttrado com sucesso!");
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					//e1.printStackTrace();
-					JOptionPane.showMessageDialog(btnNewButton, "Todos os campos são obrigatorios!");
-				}
+		public void actionPerformed(ActionEvent e) {
+			try {
+				genius.adicionarJogador(new Jogador(txtNomeJogador.getText(),genius.getCurrentJogId()+1),genius.getCurrentJogId()+1);
+				JOptionPane.showMessageDialog(btnNewButton, "Contato cadasttrado com sucesso!");
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				//e1.printStackTrace();
+				JOptionPane.showMessageDialog(btnNewButton, "Todos os campos são obrigatorios!");
 			}
-		});
-		btnNewButton.setBounds(31, 171, 89, 23);
-		frame.getContentPane().add(btnNewButton);
+		}
+	});
+		btnNewButton.setBounds(154, 199, 161, 23);
+		panelCadastroJogador.add(btnNewButton);
 		
-			JButton btnBuscar = new JButton("BUSCAR");
-		btnBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String nomeBusca=JOptionPane.showInputDialog("Digite a string de busca:");
-				try {
-					Contato contato=agenda.buscarContato(nomeBusca);
-					txtNome.setText(contato.getNome());
-					txtNumero.setText(contato.getTelefone());
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(btnNewButton, "Nenhum contato encontrado!");
-					e1.printStackTrace();
-				}
-			}
-		});
-		btnBuscar.setBounds(280, 171, 89, 23);
-		frame.getContentPane().add(btnBuscar);
+		JPanel panelCadastrarCampeonato = new JPanel();
+		tabbedPane.addTab("Consultas", null, panelCadastrarCampeonato, null);
+		panelCadastrarCampeonato.setLayout(null);
 		
-	/*	JButton btnNewButton_1 = new JButton("RESET AGENDA");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String option=JOptionPane.showInputDialog("Digite SIM para resetar sua agenda. TODOS OS DADOS SERÃO APAGADOS!");
-				if(option.equalsIgnoreCase("SIM")) {
-					try {
-						agenda.resetAgenda();
-						JOptionPane.showMessageDialog(btnNewButton, "AGENDA RESETADA!");
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-			}
-		});
-		btnNewButton_1.setBounds(129, 227, 168, 23);
-		frame.getContentPane().add(btnNewButton_1); */
+		JLabel lblNewLabel_2 = new JLabel("Titulo:");
+		lblNewLabel_2.setBounds(26, 38, 88, 14);
+		panelCadastrarCampeonato.add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setBounds(100, 35, 177, 20);
+		panelCadastrarCampeonato.add(textField);
+		textField.setColumns(10);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Jogador1");
+		chckbxNewCheckBox.setBounds(26, 90, 97, 23);
+		panelCadastrarCampeonato.add(chckbxNewCheckBox);
+		
 	}
 }
-
-
-
-
