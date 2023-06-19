@@ -7,29 +7,13 @@ public class Jogador {
 	private int pontos;
 	private String nome;
 	private ArrayList<Float> tempos;
-	private int id;
-	
-	
 
-
-
-	public Jogador(String nome,int id) {
+	public Jogador(String nome) {
 		this.nome = nome;
 		this.tempos= new ArrayList<>();
 		this.pontos=0;
-		this.id=id;
 	}
 	
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
 	public ArrayList<Float> getTempos() {
 		return tempos;
 }

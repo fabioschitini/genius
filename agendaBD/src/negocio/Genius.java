@@ -1,27 +1,33 @@
 package negocio;
 
+import java.util.List;
+
 import dao.DAOTorneio;
 import dao.DAOTorneioSqlite;
+import modelo.Campeonato;
 import modelo.Jogador;
 
 public class Genius {
 	
 	private DAOTorneio dao=new DAOTorneioSqlite();
 	
-	public void adicionarJogador(Jogador jogador,int id) throws Exception {
-		dao.addJogador(jogador,id);
+	public void adicionarJogador(Jogador jogador) throws Exception {
+		dao.addJogador(jogador);
 	}
 	
-//	public Contato buscarContato(String nome) throws Exception {
-	//	return dao.buscarContato(nome);
-	//}
+	public void adicionarCampeonato(Campeonato campeonato) throws Exception {
+		dao.addCampeonato(campeonato);
+	}
 	
 	public void iniciarBD() throws Exception {
 		dao.iniciarTables();
 	}
 	
-	public int getCurrentJogId() throws Exception  {
-		return dao.getCurrentJogadoresId(dao.getJogadoresBD());
+	public List<Jogador> getJogadores() throws Exception{
+		return dao.getJogadoresBD();
 	}
-
+	
+	public void deletarJogadores() throws Exception {
+		dao.deletarJogadores();
+	}
 }
