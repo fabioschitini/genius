@@ -1,5 +1,7 @@
 package negocio;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.DAOTorneio;
@@ -29,5 +31,21 @@ public class Genius {
 	
 	public void deletarJogadores() throws Exception {
 		dao.deletarJogadores();
+	}
+	
+	public int getQuantidadeJogadores() throws Exception {
+		return dao.getQuantidadeJogadores(getJogadores());
+	}
+	
+	public Campeonato getTorneioAtual() throws Exception {
+		return dao.getTorneioAtual();
+	}
+	
+	public void setTorneioAtual(Campeonato torneio) throws Exception {
+		dao.setTorneioAtual(torneio);
+	}
+	
+	public ArrayList<String> getCampeonatos() throws SQLException{
+		return dao.getCampeonatos();
 	}
 }

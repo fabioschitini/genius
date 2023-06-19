@@ -11,6 +11,8 @@ import modelo.Campeonato;
 import modelo.Jogador;
 
 public class DAOTorneioSqlite implements DAOTorneio {
+	
+	private Campeonato torneio;
 
 	@Override
 	public void addJogador(Jogador jogador) throws Exception {
@@ -22,11 +24,10 @@ public class DAOTorneioSqlite implements DAOTorneio {
 	
 	public void addCampeonato(Campeonato campeonato) throws Exception {
 		PreparedStatement pt=ConexaoSqlite.getIntancia().getConexao()
-				.prepareStatement("INSERT INTO CAMPEONATOS (cam_titulo,cam_relatorio,cam_completo,cam_data) VALUES (?,?,?,?)");
+				.prepareStatement("INSERT INTO CAMPEONATOS (cam_titulo,cam_relatorio,cam_data) VALUES (?,?,?)");
 		pt.setString(1, campeonato.getTitulo());
 		pt.setString(2, campeonato.getRelatorio());
-		pt.setInt(3, campeonato.getCompleto());
-		pt.setString(4, campeonato.getDataDoCampeonato());
+		pt.setString(3, campeonato.getDataDoCampeonato());
 		pt.executeUpdate();
 	}
 
@@ -35,17 +36,13 @@ public class DAOTorneioSqlite implements DAOTorneio {
 		Statement st=ConexaoSqlite.getIntancia().getConexao().createStatement();
 		st.executeUpdate("CREATE TABLE IF NOT EXISTS JOGADORES (jog_name VARCHAR(80) PRIMARY KEY )");
 		st.executeUpdate("CREATE TABLE IF NOT EXISTS CAMPEONATOS" 
-				+ " (cam_titulo VARCHAR(80) PRIMARY KEY,cam_relatorio VARCHAR(450),cam_completo INT(1),cam_data VARCHAR(45))");
-		//st.executeUpdate("CREATE TABLE IF NOT EXISTS JOGADORES_CAMPEONATO (cam_titulo VARCHAR(80),jog_name VARCHAR(80),"
-			//	+ "FOREIGN KEY(cam_titulo) REFERENCES CAMPEONATOS(cam_titulo),"
-			//	+ "FOREIGN KEY(jog_name) REFERENCES JOGADORES(jog_name) )"
-			//	);
+				+ " (cam_titulo VARCHAR(80) PRIMARY KEY,cam_relatorio VARCHAR(450),cam_data VARCHAR(45))");
 	}
 	
-	public List<Jogador> getJogadoresBD() throws Exception {
+	public ArrayList<Jogador> getJogadoresBD() throws Exception {
 		PreparedStatement pt=ConexaoSqlite.getIntancia().getConexao().prepareStatement("SELECT * FROM JOGADORES");
 		ResultSet rs=pt.executeQuery();
-		List<Jogador> lista = new ArrayList<Jogador>();
+		ArrayList<Jogador> lista = new ArrayList<Jogador>();
 		while(rs.next()) {
 			Jogador jogador= new Jogador(rs.getString("jog_name"));
 			lista.add(jogador);
@@ -53,29 +50,33 @@ public class DAOTorneioSqlite implements DAOTorneio {
 		return lista;
 	}
 	
-	public void deletarJogadores() throws SQLException {
-		PreparedStatement pt=ConexaoSqlite.getIntancia().getConexao().prepareStatement("DELETE * FROM JOGADORES");
-		ResultSet rs=pt.executeQuery();
+	public Campeonato getTorneioAtual() {
+		return torneio;
 	}
 	
-	/*public boolean checkIfJogadorRepete(String nome) throws Exception {
-		List<Jogador> lista =getJogadoresBD();
-		
-        for(Jogador jogador : lista){
-        	//System.out.println(jogador.getNome()+"/n");
-        	//System.out.println(nome);
-        	if(jogador.getNome().equals(nome)) {
-            	System.out.println("repetido");
-    			throw new Exception();
-        	}
-        }
-        
-        return true;
-			} 
+	public ArrayList<String> getCampeonatos() throws SQLException{
+		PreparedStatement pt=ConexaoSqlite.getIntancia().getConexao().prepareStatement("SELECT *FROM CAMPEONATOS");
+		ResultSet rs=pt.executeQuery();
+		ArrayList<String> lista = new ArrayList<String>();
+		while(rs.next()) {
+			lista.add(rs.getString("cam_titulo"));
+		}
+		return lista;
+	}
+	 
+	public void setTorneioAtual(Campeonato torneio) throws Exception {
+		this.torneio=torneio; 
+		this.torneio.setJogadores(getJogadoresBD());
+	}
 	
-	public int getCurrentJogadoresId(List<Jogador> jogadores) throws Exception{
+	public void deletarJogadores() throws SQLException {
+		Statement st=ConexaoSqlite.getIntancia().getConexao().createStatement();
+		st.executeUpdate("DELETE FROM JOGADORES");
+	}
+	
+	public int getQuantidadeJogadores(List<Jogador> jogadores) throws Exception{
 		return jogadores.size();
-	};*/
+	};
 
 
 }
