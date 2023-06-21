@@ -30,6 +30,14 @@ public class DAOTorneioSqlite implements DAOTorneio {
 		pt.setString(3, campeonato.getDataDoCampeonato());
 		pt.executeUpdate();
 	}
+	
+	public void addRelatorio(String titulo,String relatorio) throws Exception {
+		System.out.println(titulo);
+		System.out.println(relatorio);
+		PreparedStatement pt=ConexaoSqlite.getIntancia().getConexao()
+				.prepareStatement("UPDATE CAMPEONATOS SET cam_relatorio ='"+relatorio+"' WHERE cam_titulo='"+titulo+"'");
+				pt.executeUpdate();
+	}
 
 
 	public void iniciarTables() throws Exception {
@@ -77,6 +85,23 @@ public class DAOTorneioSqlite implements DAOTorneio {
 	public int getQuantidadeJogadores(List<Jogador> jogadores) throws Exception{
 		return jogadores.size();
 	};
+	
+	public String retornarRelatorio(String titulo) throws SQLException {
+		PreparedStatement pt=ConexaoSqlite.getIntancia().getConexao().prepareStatement("SELECT * FROM CAMPEONATOS");
+		ResultSet rs=pt.executeQuery();
+		ArrayList<Campeonato> lista = new ArrayList<Campeonato>();
+		while(rs.next()) {
+			Campeonato campeonato= new Campeonato(rs.getString("cam_titulo"),
+					rs.getString("cam_relatorio"));
+			lista.add(campeonato);
+		}
+		for(Campeonato campeonato : lista){
+			if(campeonato.getTitulo().equals(titulo)) {
+				return campeonato.getRelatorio();
+			}
+}
+		return "";
+}
 
 
 }

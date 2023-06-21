@@ -48,4 +48,13 @@ public class Genius {
 	public ArrayList<String> getCampeonatos() throws SQLException{
 		return dao.getCampeonatos();
 	}
+	
+	public String retornarRelatorio(String titulo) throws SQLException {
+		return dao.retornarRelatorio(titulo);
+	}
+	
+	public void addRelatorio(String titulo,String relatorio) throws Exception {
+		dao.addRelatorio(titulo, relatorio);
+	}
+	
 }
