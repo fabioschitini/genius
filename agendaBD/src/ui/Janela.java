@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import modelo.Campeonato;
+import negocio.Jogo;
 import modelo.Jogador;
 import negocio.Genius;
 import exceptions.JogadoresInsifucientesException;
@@ -33,6 +34,7 @@ public class Janela {
 	private JFrame frame;
 	private JTextField txtNomeJogador;
     private Genius genius = new Genius();
+    private Jogo jogo=new Jogo();
     private JTextField textField;
     private JTextField textField_1;
    
@@ -81,10 +83,10 @@ public class Janela {
 			e.printStackTrace();
 		}
 		String[] arrayCampeonatos = campeonatos.toArray(new String[campeonatos.size()]);
-
+		
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 531, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -175,63 +177,16 @@ public class Janela {
 		});
 		btnNewButton_4.setBounds(101, 85, 89, 23);
 		panel.add(btnNewButton_4);
-		
 		//Jogar
+		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Jogar", null, panel_1, null);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("Torneio:");
-		lblNewLabel_3.setBounds(129, 11, 46, 14);
-		panel_1.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Dificuldade:");
-		lblNewLabel_4.setBounds(10, 11, 76, 14);
-		panel_1.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("Velocidade:");
-		lblNewLabel_5.setBounds(319, 11, 76, 14);
-		panel_1.add(lblNewLabel_5);
-		
 		JComboBox comboBoxTorneios = new JComboBox(arrayCampeonatos);
-		comboBoxTorneios.setBounds(129, 40, 143, 22);
-		panel_1.add(comboBoxTorneios);
+
 		
-		JComboBox comboBoxDificuldade = new JComboBox();
-		comboBoxDificuldade.setModel(new DefaultComboBoxModel(new String[] {"Fácil","Médio","Díficil"}));
-		comboBoxDificuldade.setBounds(10, 40, 76, 22);
-		panel_1.add(comboBoxDificuldade);
-		
-		JComboBox comboBoxVelocidade = new JComboBox();
-		comboBoxVelocidade.setModel(new DefaultComboBoxModel(new String[] {"1","2","3"}));
-		comboBoxVelocidade.setBounds(319, 40, 76, 22);
-		panel_1.add(comboBoxVelocidade);
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(42, 73, 341, 40);
-		panel_1.add(textArea_1);
-		
-		JButton btnNewButton_5 = new JButton("Começar");
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String campeonato=(String)comboBoxTorneios.getSelectedItem();
-				try {
-					if(genius.getQuantidadeJogadores()<2) throw new Exception();
-					genius.setTorneioAtual(new Campeonato(textField_1.getText(),"Relatorio teste"));
-					genius.addRelatorio(campeonato,textArea_1.getText());
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(btnNewButton, "Voce precisa ter pelo menos dois jogadores cadastrados para jogar!");
-					e1.printStackTrace();
-				}
-				
-			}
-		});
-		btnNewButton_5.setBackground(Color.GREEN);
-		btnNewButton_5.setBounds(144, 125, 89, 23);
-		panel_1.add(btnNewButton_5);
-		
-		
+		jogo.startMenu(panel_1,arrayCampeonatos,genius,comboBoxTorneios);
 		
 		JPanel panelTorneio = new JPanel();
 		tabbedPane.addTab("Cadastrar Torneio", null, panelTorneio, null);

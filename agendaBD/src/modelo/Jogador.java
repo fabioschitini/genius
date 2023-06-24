@@ -8,6 +8,7 @@ public class Jogador {
 	private String nome;
 	private ArrayList<Float> tempos;
 
+
 	public Jogador(String nome) {
 		this.nome = nome;
 		this.tempos= new ArrayList<>();
@@ -17,6 +18,11 @@ public class Jogador {
 	public ArrayList<Float> getTempos() {
 		return tempos;
 }
+	
+	public void setTempos(ArrayList<Float> tempos) {
+		this.tempos = tempos;
+	}
+
 
 	public void addTempo(float tempo) {
 		this.getTempos().add(tempo);
@@ -33,8 +39,7 @@ public class Jogador {
 		return pontos;
 }
 	public void setPontos(int pontos) {
-		this.pontos = pontos;
+		this.pontos =this.pontos+pontos;
 }
-
 
 }
