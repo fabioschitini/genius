@@ -20,4 +20,5 @@ public interface DAOTorneio {
 	public ArrayList<String> getCampeonatos() throws SQLException;
 	public String retornarRelatorio(String titulo) throws SQLException;
 	public void addRelatorio(String titulo,String relatorio) throws Exception;
+	public void deletarTorneios() throws SQLException;
 }

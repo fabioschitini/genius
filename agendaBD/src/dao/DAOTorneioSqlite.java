@@ -31,6 +31,10 @@ public class DAOTorneioSqlite implements DAOTorneio {
 		pt.executeUpdate();
 	}
 	
+	public void deletarTorneios() throws SQLException{
+		Statement st=ConexaoSqlite.getIntancia().getConexao().createStatement();
+		st.executeUpdate("DELETE FROM CAMPEONATOS");
+	}
 	public void addRelatorio(String titulo,String relatorio) throws Exception {
 		System.out.println(titulo);
 		System.out.println(relatorio);
@@ -44,7 +48,7 @@ public class DAOTorneioSqlite implements DAOTorneio {
 		Statement st=ConexaoSqlite.getIntancia().getConexao().createStatement();
 		st.executeUpdate("CREATE TABLE IF NOT EXISTS JOGADORES (jog_name VARCHAR(80) PRIMARY KEY )");
 		st.executeUpdate("CREATE TABLE IF NOT EXISTS CAMPEONATOS" 
-				+ " (cam_titulo VARCHAR(80) PRIMARY KEY,cam_relatorio VARCHAR(450),cam_data VARCHAR(45))");
+				+ " (cam_titulo VARCHAR(80) PRIMARY KEY,cam_relatorio VARCHAR(850),cam_data VARCHAR(45))");
 	}
 	
 	public ArrayList<Jogador> getJogadoresBD() throws Exception {
@@ -103,5 +107,5 @@ public class DAOTorneioSqlite implements DAOTorneio {
 		return "";
 }
 
-
+	
 }

@@ -1,9 +1,11 @@
 package negocio;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.ConexaoSqlite;
 import dao.DAOTorneio;
 import dao.DAOTorneioSqlite;
 import modelo.Campeonato;
@@ -55,6 +57,10 @@ public class Genius {
 	
 	public void addRelatorio(String titulo,String relatorio) throws Exception {
 		dao.addRelatorio(titulo, relatorio);
+	}
+	
+	public void deletarTorneios() throws SQLException{
+		dao.deletarTorneios();
 	}
 	
 }
