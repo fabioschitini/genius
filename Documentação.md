@@ -1,8 +1,6 @@
 # genius
 
 
-
-
 Um projeto em que voce joga um torneio do jogo genius.Nele, deve ser permitirdo que mais de um jogador dispute um campeonato. A
 cada rodada devem ser computados e exibidos os pontos(totais e da rodada) de cada Jogador. Um jogador
 deve jogar até errar sua sequência e depois passar a vez. Em caso de empate, uma rodada extra deve ser
