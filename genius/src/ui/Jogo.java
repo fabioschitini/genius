@@ -165,9 +165,7 @@ public class Jogo {
 	            nextColor = random.nextInt(4);
 	            sequence.add(nextColor);
 	        }
-	        
-	        System.out.print("Sequence:");
-	        for (int i = 0; i <= currentSequence; i++) {
+	        for (int i = 0; i <= currentSequence+difficulty-1; i++) {
 	            System.out.print(" " + getColorName(sequence.get(i),contentPane,arrayCampeonatos,genius,comboBoxTorneios));
 	        }
 	        System.out.println();
@@ -180,6 +178,7 @@ public class Jogo {
 	    }
 
 	    private void flashNextButton(JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
+	    	System.out.println("FlashNextButton \n");
 	        if (currentIndex < sequence.size()) {
 	            int buttonIndex = sequence.get(currentIndex);
 	            JButton button = buttons.get(buttonIndex);
@@ -191,6 +190,7 @@ public class Jogo {
 	    }
 
 	    private void flashButton(JButton button,JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
+	    	System.out.println("FlashButton \n");
 	        final Color originalColor = button.getBackground();
 	        button.setBackground(Color.WHITE);
 	        playBeepSound();
@@ -232,8 +232,9 @@ public class Jogo {
 	        //acertou
 	        if (buttonIndex == sequence.get(sequenceIndex)) {
 	            sequenceIndex++;
-
-	            if (sequenceIndex > currentSequence) {
+	            System.out.println("Check button \n");
+	            if (sequenceIndex > currentSequence+difficulty-1) {
+		            System.out.println("Acertei \n");
 	    		        if(repetiu) addTempoJogada(jogadoresEmpatados,indiceJogadoresEmpatados);
 	    		        else addTempoJogada(jogadores,indiceJogador);
 	                    currentSequence += difficulty;
@@ -244,6 +245,7 @@ public class Jogo {
 	        }
 	        //errou
 	        	else {
+		            System.out.println("Errei \n");
 	        		//verifica se esse é o ultimo jogador e faz as mudancas necessarias
 	        		if(repetiu) {
 	        			fimDoTurno(contentPane,jogadoresEmpatados, indiceJogadoresEmpatados);
@@ -367,10 +369,10 @@ public class Jogo {
 	    private void fimDoTurno(JPanel contentPane,ArrayList<Jogador> jogadores,int indiceJogador) {
 	    	//adiciona o tempo da jogada,mostra mensagem que perdeu e adicion info para o mini relatorio
     		addTempoJogada(jogadores,indiceJogador);
-    		jogadores.get(indiceJogador).addPontos(currentSequence);
+    		jogadores.get(indiceJogador).addPontos(currentSequence/difficulty);
     		miniRelatorio+="Pontos "+jogadores.get(indiceJogador).getPontos()+" de "+jogadores.get(indiceJogador).getNome()+"\n";
     		JOptionPane.showMessageDialog(contentPane, "Botão errado! Fim de jogo pra voce "+jogadores.get(indiceJogador)
-    		.getNome()+". Sua pontuação da rodada é "+currentSequence +"\n e a total é "+jogadores
+    		.getNome()+". Sua pontuação da rodada é "+currentSequence/difficulty +"\n e a total é "+jogadores
     		.get(indiceJogador).getPontos(), "Simon Says", JOptionPane.INFORMATION_MESSAGE);
 	    }
 	    
