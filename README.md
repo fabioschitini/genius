@@ -49,5 +49,6 @@ Aprendemos a usar o Windows Builder e as funções gráficas do Java.
 
 
 ## Autores
-
+Fábio Schitini e Guilherme Paim
+Github: [snowzzra](https://github.com/snowzzra)
 GitHub: [fabioschitini](https://github.com/fabioschitini)
