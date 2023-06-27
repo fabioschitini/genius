@@ -446,6 +446,9 @@ public class Jogo {
 	            Clip clip = AudioSystem.getClip();
 	            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(beepSoundFile);
 	            clip.open(audioInputStream);
+	            FloatControl gainControl = 
+	            	    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	            	gainControl.setValue(-11.0f);
 	            clip.start();
 	        } catch (Exception e) {
 	            e.printStackTrace();
