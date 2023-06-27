@@ -373,8 +373,8 @@ public class Jogo {
     		addTempoJogada(jogadores,indiceJogador);
     		jogadores.get(indiceJogador).addPontos(currentSequence);
     		miniRelatorio+="Pontos "+jogadores.get(indiceJogador).getPontos()+" de "+jogadores.get(indiceJogador).getNome()+"\n";
-    		JOptionPane.showMessageDialog(contentPane, "Botão errado! Fim de jogo pra voce  "+jogadores.get(indiceJogador)
-    		.getNome()+". Sua pontuação da rodada é  "+currentSequence +"\n e a total é "+jogadores
+    		JOptionPane.showMessageDialog(contentPane, "Botão errado! Fim de jogo pra voce "+jogadores.get(indiceJogador)
+    		.getNome()+". Sua pontuação da rodada é "+currentSequence +"\n e a total é "+jogadores
     		.get(indiceJogador).getPontos(), "Simon Says", JOptionPane.INFORMATION_MESSAGE);
 	    }
 	    
@@ -413,8 +413,8 @@ public class Jogo {
 						miniRelatorio="";
 						repetiu=false;
 						genius.addRelatorio(genius.getTorneioAtual().getTitulo(),gerarRelatorio(genius));
-						JOptionPane.showMessageDialog(contentPane, "Fim de jogo o vencedor é "+acharVencedor()
-						.getNome()+" Pontuação "+acharVencedor().getPontos()
+						JOptionPane.showMessageDialog(contentPane, "Fim de jogo. O vencedor é "+acharVencedor()
+						.getNome()+" com "+acharVencedor().getPontos()+" pontos"
 			   				 ,"Simon Says", JOptionPane.INFORMATION_MESSAGE);
 			            gerarRelatorio(genius);
 			            resetGame(contentPane,arrayCampeonatos,genius,comboBoxTorneios);

@@ -84,11 +84,6 @@ public class Janela {
 		tabbedPane.addTab("Cadastro de Jogadores", null, panelCadastroJogador, null);
 		panelCadastroJogador.setLayout(null);
 		cadastrarJogador.menu(panelCadastroJogador);
-		//Tab de pegar os relatorios
-		JPanel panelRelatorios = new JPanel();
-		tabbedPane.addTab("Relatorios", null, panelRelatorios, null);
-		panelRelatorios.setLayout(null);
-		relatorios.menu(panelRelatorios, comboBoxTorneiosRelatorios);
 		//Tab de cadastrar torneios
 		JPanel panelTorneio = new JPanel();
 		tabbedPane.addTab("Cadastrar Torneio", null, panelTorneio, null);
@@ -99,6 +94,10 @@ public class Janela {
 		tabbedPane.addTab("Jogar", null, panel_1, null);
 		panel_1.setLayout(null);
 		jogo.startMenu(panel_1,arrayCampeonatos,genius,comboBoxTorneios);
-		
+		//Tab de pegar os relatorios
+		JPanel panelRelatorios = new JPanel();
+		tabbedPane.addTab("Relatorios", null, panelRelatorios, null);
+		panelRelatorios.setLayout(null);
+		relatorios.menu(panelRelatorios, comboBoxTorneiosRelatorios);
 	}
 }

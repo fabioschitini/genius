@@ -10,7 +10,7 @@ public class ConexaoSqlite {
 	private static ConexaoSqlite instancia;
 	
 	private ConexaoSqlite() throws SQLException {
-		this.conexao=DriverManager.getConnection("jdbc:sqlite:agenda.db");
+		this.conexao=DriverManager.getConnection("jdbc:sqlite:genius.db");
 	}
 
 	public static ConexaoSqlite getIntancia() throws SQLException {

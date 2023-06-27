@@ -30,7 +30,7 @@ public class RelatoriosTab {
 		panelRelatorios.add(comboBoxTorneiosRelatorios);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(31, 129, 388, 159);
+		textArea.setBounds(31, 129, 388, 250);
 		panelRelatorios.add(textArea);
 		
 		JButton btnNewButton_4 = new JButton("Pesquisar");
@@ -44,12 +44,16 @@ public class RelatoriosTab {
 						if(genius.retornarRelatorio(campeonato).isBlank()) throw new SQLException ();
 						textArea.setText(""+genius.retornarRelatorio(campeonato));
 					} catch (SQLException e1) {
+						textArea.setText("");
 						JOptionPane.showMessageDialog(btnNewButton, "Relatorio esta vázio,va jogar esse torneio para preenche-ló!");
 						//e1.printStackTrace();
 						System.out.println("Relatorio esta vazio exception");
 					}
 				}
-				else JOptionPane.showMessageDialog(btnNewButton, "Nao existe torneios cadastrados!");
+				else {
+					textArea.setText("");
+					JOptionPane.showMessageDialog(btnNewButton, "Nao existe torneios cadastrados!");
+				} 
 			}
 			
 		});
