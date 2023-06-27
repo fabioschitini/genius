@@ -33,6 +33,8 @@ Um projeto no qual você participa de um torneio do jogo Genius. Nele, é permit
 # Instruções:
 
 * Baixe o arquivo zip do repositório ou faça um clone do mesmo.
+* Abra o arquivo genius dentro do genius-main com o eclipse
+* Instale o windowns builder no eclipse help->marketplace->popular->windowns builder->instalar
 * Instale a biblioteca SQLite JDBC através do arquivo RAR presente na pasta.
 * Para instalar, clique com o botão direito na pasta onde está o seu projeto no Eclipse e selecione "Properties" -> "Java Build Path" -> * "ClassPath" -> "Add External Jars" e selecione o arquivo "sqlite-jdbc-3.41.2.1.jar".
 * Abra o projeto no Eclipse e clique em "Run".
