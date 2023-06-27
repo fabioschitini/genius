@@ -1,9 +1,6 @@
 package ui;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -15,16 +12,13 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.Timer;
-import javax.swing.border.EmptyBorder;
 
 import modelo.Campeonato;
 import modelo.Jogador;
@@ -32,7 +26,8 @@ import negocio.Genius;
 
 public class Jogo {
 	
-	 	private static final long serialVersionUID = 1L;
+	 	@SuppressWarnings("unused")
+		private static final long serialVersionUID = 1L;
 	    private JLabel speedLabel;
 	    private JLabel diffLabel;
 	    private List<JButton> buttons;
@@ -49,7 +44,6 @@ public class Jogo {
 		private String miniRelatorio="";
 		private long start;
 		private long finish;
-		private String relatorio;
 		boolean repetiu=false;
 		int indiceJogadoresEmpatados=0;
 	    private int indiceJogador=0;
@@ -63,8 +57,9 @@ public class Jogo {
 	         loadBeepSound();
 	    }
 	    
-	    public void startMenu(JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
-	    	jogadoresEmpatadosSize();
+	    public void startMenu(JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
+	    	//Iniciando a tab jogar
+	    	
 	        contentPane.removeAll();
 	        contentPane.revalidate();
 	        contentPane.repaint();
@@ -84,7 +79,7 @@ public class Jogo {
 		    createActionButton("Velocidade++", 319, 40, 120, 30, 50, "speedPlus",contentPane);
 	        contentPane.add(speedLabel);
 	        contentPane.add(diffLabel);
-			
+			//Funcao com botao de comecar o jogo
 			JButton startButton = new JButton("Começar");
 		    startButton.setBackground(Color.GREEN);
 		    startButton.setForeground(Color.WHITE);
@@ -115,8 +110,9 @@ public class Jogo {
 			contentPane.add(startButton);
 	    }
   
-	    private void startGame(JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
-	        contentPane.removeAll();
+	    private void startGame(JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
+	       //Apagar a tab de jogar e coloca os botes do jogo em seu lugar,alem de iniciar as variaveis usadas no jogo
+	    	contentPane.removeAll();
 	        contentPane.revalidate();
 	        contentPane.repaint();
 	        buttons = new ArrayList<>();
@@ -139,7 +135,7 @@ public class Jogo {
 	        generateNextSequenceItem(contentPane,arrayCampeonatos,genius,comboBoxTorneios);
 	    }
 	    
-	    private void createButton(String name, Color color, int x, int y, int width, int height,JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
+	    private void createButton(String name, Color color, int x, int y, int width, int height,JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
 	        JButton button = new JButton("");
 	        button.setName(name);
 	        button.setBackground(color);
@@ -153,7 +149,7 @@ public class Jogo {
 	        buttons.add(button);
 	    }
 
-	    private void resetGame(JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
+	    private void resetGame(JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
 	        sequence = null;
 	        sequenceIndex = 0;
 	        currentSequence = 0;
@@ -161,7 +157,7 @@ public class Jogo {
 	        isPlayingSequence = false;
 	    }
 
-	    private void generateNextSequenceItem(JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
+	    private void generateNextSequenceItem(JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
 	        Random random = new Random();
 	        int nextColor;
 	        
@@ -177,13 +173,13 @@ public class Jogo {
 	        System.out.println();
 	    }
 
-	    private void playSequence(JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
+	    private void playSequence(JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
 	        currentIndex = 0;
 	        isPlayingSequence = true;
 	        flashNextButton(contentPane,arrayCampeonatos,genius,comboBoxTorneios);
 	    }
 
-	    private void flashNextButton(JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
+	    private void flashNextButton(JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
 	        if (currentIndex < sequence.size()) {
 	            int buttonIndex = sequence.get(currentIndex);
 	            JButton button = buttons.get(buttonIndex);
@@ -194,7 +190,7 @@ public class Jogo {
 	        }
 	    }
 
-	    private void flashButton(JButton button,JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
+	    private void flashButton(JButton button,JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
 	        final Color originalColor = button.getBackground();
 	        button.setBackground(Color.WHITE);
 	        playBeepSound();
@@ -227,11 +223,13 @@ public class Jogo {
 	        timer.start();
 	    }
 
-	    private void checkButton(JButton button,JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
+	    private void checkButton(JButton button,JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
 	        if (isPlayingSequence) {
 	            return;
 	        }
+	        //Checa o botão e ve acertou a sequencia ou nao
 	        int buttonIndex = buttons.indexOf(button);
+	        //acertou
 	        if (buttonIndex == sequence.get(sequenceIndex)) {
 	            sequenceIndex++;
 
@@ -243,8 +241,10 @@ public class Jogo {
 	                    sequenceIndex = 0;
 	                    playSequence(contentPane,arrayCampeonatos,genius,comboBoxTorneios);
 	            }
-	        } else {
-	        	
+	        }
+	        //errou
+	        	else {
+	        		//verifica se esse é o ultimo jogador e faz as mudancas necessarias
 	        		if(repetiu) {
 	        			fimDoTurno(contentPane,jogadoresEmpatados, indiceJogadoresEmpatados);
 	        		}
@@ -256,7 +256,7 @@ public class Jogo {
 	        }
 	    }
 
-	    private String getColorName(int colorIndex,JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
+	    private String getColorName(int colorIndex,JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
 	        switch (colorIndex) {
 	            case 0:
 	                return "RED";
@@ -346,20 +346,15 @@ public class Jogo {
 	    		tempoTotal=jogador.getTempos().stream().reduce((x, y) -> x + y).get();
 	    		melhorTempo= Collections.min(jogador.getTempos());
 	    		parteJogadores+="Nome: "+jogador.getNome()+", Apelido: "+gerarApelido(jogador)+", Total de Pontos:"+jogador.getPontos()+
-	    				"\n Tempo Total das Jogadas:"+tempoTotal+"s, Jogada Mais Rápida:"+melhorTempo+"s \n";
+	    				"\n Tempo Total das Jogadas:"+tempoTotal+"s, Jogada Mais Rápida:"+melhorTempo+"s \n\n";
 	    	}
-	    	return parteCampeonato+"\n"+parteJogadores;
+	    	return parteCampeonato+"\n\n"+parteJogadores;
 	    }
 	    
 	    private String gerarApelido(Jogador jogador) {
 	    	String apelido;
 	    	apelido=""+jogador.getNome().charAt(0)+jogador.getNome().charAt(1)+jogador.getNome().charAt(2);
 	    	return apelido.toUpperCase();
-	    }
-	    
-	    private int jogadoresEmpatadosSize() {
-	    	System.out.println(jogadoresEmpatados.size());
-	    	return jogadoresEmpatados.size();
 	    }
 	    
 	    private void addTempoJogada(ArrayList<Jogador> jogadores,int indiceJogador) {
@@ -370,6 +365,7 @@ public class Jogo {
 	    }
 	    
 	    private void fimDoTurno(JPanel contentPane,ArrayList<Jogador> jogadores,int indiceJogador) {
+	    	//adiciona o tempo da jogada,mostra mensagem que perdeu e adicion info para o mini relatorio
     		addTempoJogada(jogadores,indiceJogador);
     		jogadores.get(indiceJogador).addPontos(currentSequence);
     		miniRelatorio+="Pontos "+jogadores.get(indiceJogador).getPontos()+" de "+jogadores.get(indiceJogador).getNome()+"\n";
@@ -378,7 +374,8 @@ public class Jogo {
     		.get(indiceJogador).getPontos(), "Simon Says", JOptionPane.INFORMATION_MESSAGE);
 	    }
 	    
-	    private void fimDaRodada(JPanel contentPane,String[] arrayCampeonatos,Genius genius,JComboBox comboBoxTorneios) {
+	    private void fimDaRodada(JPanel contentPane,String[] arrayCampeonatos,Genius genius,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneios) {
+	    	
             try {
 				if(genius.getQuantidadeJogadores()-1>indiceJogador) {
 					 indiceJogador++;
@@ -394,7 +391,8 @@ public class Jogo {
 		            playSequence(contentPane,arrayCampeonatos,genius,comboBoxTorneios);
 				}
 				else {
-					
+					//Ve se houve empate,se houve reinicia o jogo com os jogadores empatados,se nao terminar o jogo e gera o relatorio
+					//se houve reinicia o jogo com os jogadores empatados
 					if(houveEmpate(jogadores)) {
 						repetiu=true;
 						JOptionPane.showMessageDialog(contentPane, "Houve um empate entre os jogadores "+getJogadoresEmpatados()+"  todos estao com "
@@ -407,7 +405,7 @@ public class Jogo {
 			            playSequence(contentPane,arrayCampeonatos,genius,comboBoxTorneios);
 						
 					}
-
+					//se nao terminar o jogo e gera o relatorio
 					else {
 						jogadoresEmpatados.clear();
 						miniRelatorio="";

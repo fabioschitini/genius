@@ -1,7 +1,6 @@
 package ui;
 
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -12,16 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
-import modelo.Jogador;
 import negocio.Genius;
 
 public class RelatoriosTab {
     private Genius genius = new Genius();
-	private JTextField txtNomeJogador;
 
-	public void menu(JPanel panelRelatorios,JComboBox comboBoxTorneiosRelatorios) {
+	public void menu(JPanel panelRelatorios,@SuppressWarnings("rawtypes") JComboBox comboBoxTorneiosRelatorios) {
 		JLabel lblNewLabel_2 = new JLabel("Torneios :");
 		lblNewLabel_2.setBounds(31, 26, 75, 14);
 		panelRelatorios.add(lblNewLabel_2);

@@ -43,7 +43,7 @@ public class Janela {
 	public Janela() {
 		initialize();
 	}
-
+	//Inicia o Banco de Dados
 	private void initBD() {
 		try {
 			genius.iniciarBD();
@@ -52,7 +52,7 @@ public class Janela {
 			e.printStackTrace();
 		}
 	}
-	
+	//Pega os campeonatos cadastrados do BD
 	private ArrayList<String> getCampeonatosBD() {
 		try {
 			return genius.getCampeonatos();
@@ -63,6 +63,7 @@ public class Janela {
 		}
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
 		
 		initBD();

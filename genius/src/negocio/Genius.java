@@ -1,17 +1,17 @@
 package negocio;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.ConexaoSqlite;
 import dao.DAOTorneio;
 import dao.DAOTorneioSqlite;
 import modelo.Campeonato;
 import modelo.Jogador;
 
 public class Genius {
+	
+	//Classe com todas as funcoes de conexao com o banco de dados arrumada e resumida
 	
 	private DAOTorneio dao=new DAOTorneioSqlite();
 	

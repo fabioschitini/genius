@@ -4,24 +4,22 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import modelo.Campeonato;
-import modelo.Jogador;
 import negocio.Genius;
 
 public class CadastrarTorneioTab {
     private Genius genius = new Genius();
 	private JTextField txtTituloTorneio;
 
+	@SuppressWarnings("rawtypes")
 	public void menu(JPanel panelTorneio,JComboBox comboBoxTorneiosRelatorios,JComboBox comboBoxTorneios) {
 		JLabel lblNewLabel_1 = new JLabel("Titulo:");
 		panelTorneio.setBounds(34, 38, 82, 14);
@@ -31,9 +29,10 @@ public class CadastrarTorneioTab {
 		txtTituloTorneio.setBounds(86, 35, 301, 23);
 		panelTorneio.add(txtTituloTorneio);
 		txtTituloTorneio.setColumns(10);
-		
+		//Botao de ADD torneio
 		JButton btnAdd = new JButton("Adicionar");
 		btnAdd.addActionListener(new ActionListener() {
+		@SuppressWarnings("unchecked")
 		public void actionPerformed(ActionEvent e) {
 			Component btnNewButton = null;
 			if(txtTituloTorneio.getText().isBlank())JOptionPane.showMessageDialog(btnAdd, "O titulo é obrigatório");
@@ -59,7 +58,7 @@ public class CadastrarTorneioTab {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_3.setBounds(10, 38, 46, 14);
 		panelTorneio.add(lblNewLabel_3);
-		
+		//Botao de deletar torneios
 		JButton btnDeletar = new JButton("Deletar todos os torneios");
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

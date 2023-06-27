@@ -27,7 +27,7 @@ public class CadastrarJogadorTab {
 		txtNomeJogador.setBounds(154, 33, 294, 23);
 		panelCadastroJogador.add(txtNomeJogador);
 		txtNomeJogador.setColumns(10);
-		
+		//Botao de ADD jogador
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
@@ -44,7 +44,7 @@ public class CadastrarJogadorTab {
 	});
 		btnAdd.setBounds(154, 81, 294, 59);
 		panelCadastroJogador.add(btnAdd);
-		
+		//Botao de deletar jogador
 		JButton btnDeletar = new JButton("Deletar Jogadores");
 		btnDeletar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
