@@ -16,7 +16,7 @@ Jogada mais rápida de cada jogador.
 
 * Java
 
-#Ferramentas
+# Ferramentas
 
 * Eclipse
 * Linux terminal
@@ -25,23 +25,34 @@ Jogada mais rápida de cada jogador.
 * Node Libraries
 * 
 # Resultados
-* Usei Git e GitHub para ajudar na organização e updates do trabalho.
+* Usamos Git e GitHub para ajudar na organização e updates do trabalho.
 * Tentamos manter um codigo limpo e funcional.
 * Usamos SQLLite para criar um banco de daods para armarzenar os dados dos jogadores e torneios cadastrados
 * Implementamos o banco de dados no package dao
 * Organizamos as funcoes de acesso e modificao do banco de dadoes no package negocio
-* Criamos os modelos dos jogadores e torneios na ps
+* Criamos os modelos das classes jogadores e torneios na pasta modelo
+* Por fim criamos a interface de usuario e a logica do jogo no package ui
+* Dividimos a ui em 4 tabs:CadastrarJogador,CadastrarTorneio,MostrarRelatorios e a tab do jogo em si
+* Na tab de cadastrar jogadores tem a opcao de castrar um jogador e deletar todos eles
+* Na tab de cadastrar torneios tem a opca de cadastrar e deletar todos os torneios
+* Na tab de relatorios voce escolhe o torneio cadastrado e pesquisa sobre seu relatorio
+* Na tab de jogo tem a opcao de selecionar o torneio que voce quer jogar,a dificuldade e a velocidade
+
+# Instruções
+* Baixe o zip do repositorio ou faça um clone dele
+* Instalae a biblioteca sqlite jdbc atraves do arquvio rar da pasta
+* Para instalar clique om o botao direito na pasta onde esta o seu projeto no eclipse e clique em Properties->Java Build Path->ClassPath->Add External Jars e selecione o arquivo sqlite-jdbc-3.41.2.1.jar
+* Abra o projeto pelo eclipse e clique em Run
+* Enjoy 
+# Resumo
+
+## O que aprendemos
+
+* Melhoramos nosso conhecimento de POO e Java
+* Como usar Windown Builder e as funcoes graficas de Java
+* Como compartilhar codigo em conjunto com o gitHub
 
 
-# Summary
-
-## What I learned
-
-* How to better use React
-* How to interger the react front-End with my API,created using express
-* Overall a firm base on React and Firebase
-* How to use jtwt to Authenticate the admin side of my blog
-
-## Author
+## Autores
 
 GitHub: [fabioschitini](https://github.com/fabioschitini)
